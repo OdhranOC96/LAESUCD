@@ -1,8 +1,5 @@
-from air import Air
-from compound import PRH
-from isentropic_unit import IsentropicUnit
-from methanol import Methanol
-from water import Water
+from UNITS.expansion_valve import ExpansionValve
+from FLUIDS.air import Air
 import numpy as np 
 import matplotlib
 import matplotlib.pyplot as plt 
@@ -10,26 +7,17 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    # testing for air.py
-    air = Air()
-    print("enthalpy	298	101325\n", air.enthalpy(298, 101325))
-    print("entropy	298	101325\n", air.entropy(298, 101325))
-    print("density	298	101325\n", air.density(298, 101325))
-    print("Cp	298	101325\n", air.cp(298, 101325))
-
-    # testing for IsentropicUnit
-    isentropic_unit = IsentropicUnit(air=air)
-    print("calcOutTemperature	298	101325	500000\n", isentropic_unit.calcOutTemperature(298, 101325, 500000))
-    print("WATER PRH 298	101325\n", PRH(Water(), 298, 101325))
-    print("METHANOL PRH 298	101325\n", PRH(Methanol(), 298, 101325))
-
-    x = np.arange(80, 293,1)
-    y = [air.cv(_,101325) for _ in x]
-    plt.plot(x,y)
-    plt.show()
-        
     
+    air = Air()
+    ev1 = ExpansionValve(air)
 
+    Tin = 126
+    Po = 30
+    P = 2
+ 
+    [L,xO2,Tout,xN2,Enthalpy_L,Enthalpy_V] = ev1.ThrottleV(Tin,P,Po, 1,0,0.21,0.79,0,0)
+    
+    return Tin
 
 if __name__ == '__main__':
     main()

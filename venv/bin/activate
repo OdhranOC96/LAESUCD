@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/odhranocallaghan/Documents/Python/LAES/venv"
+VIRTUAL_ENV="/Users/odhranocallaghan/Google Drive/PhD/Modelling/Python/LAES/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
